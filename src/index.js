@@ -7,6 +7,7 @@ app.use(express.json());
 
 
 const episodes = [];
+
 app.get('/episodes', (request, response) => {
   const {id} = request.query;
   const results = id
@@ -16,7 +17,16 @@ app.get('/episodes', (request, response) => {
   return response.json(results);
 });
 
+app.get('/episodes/:id', (request, response) => {
+  const { id } = request.params;
+  const projectIndex = episodes.findIndex(project => project.id === id);
+  if(projectIndex <0){
+    return response.status(400).json({error: 'Project not found'})
+  }
 
+  const project = episodes[projectIndex];
+  return response.json(project);
+});
 
 app.post('/episodes', (request, response) => {
   const {id,title,members,published_at,thumbnail,description,url,type,duration} = request.body; 
@@ -77,4 +87,4 @@ app.delete('/episodes/:id',(request, response) => {
   return response.status(204).send();
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3001);
