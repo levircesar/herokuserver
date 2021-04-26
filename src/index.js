@@ -6,19 +6,19 @@ app.use(cors());
 app.use(express.json());
 
 
-const projects = [];
-app.get('/projects', (request, response) => {
+const episodes = [];
+app.get('/episodes', (request, response) => {
   const {id} = request.query;
   const results = id
-    ? projects.filter(project => project.title.includes(id))
-    : projects;
+    ? episodes.filter(project => project.title.includes(id))
+    : episodes;
 
   return response.json(results);
 });
 
 
 
-app.post('/projects', (request, response) => {
+app.post('/episodes', (request, response) => {
   const {id,title,members,published_at,thumbnail,description,url,type,duration} = request.body; 
 
   const project = {
@@ -35,15 +35,15 @@ app.post('/projects', (request, response) => {
     }
   }
 
-  projects.push(project);
+  episodes.push(project);
   return response.json(project);
 });
 
-app.put('/projects/:id',(request, response) => {
+app.put('/episodes/:id',(request, response) => {
   const { id } = request.params;
   const {title,members,published_at,thumbnail,description,file} = request.body; 
 
-  const projectIndex = projects.findIndex(project => project.id === id);
+  const projectIndex = episodes.findIndex(project => project.id === id);
   if(projectIndex <0){
     return response.status(400).json({error: 'Project not found'})
   }
@@ -62,18 +62,18 @@ app.put('/projects/:id',(request, response) => {
   }
 
 
-  projects[projectIndex] = project;
+  episodes[projectIndex] = project;
 
   return response.json(project);
 });
 
-app.delete('/projects/:id',(request, response) => {
+app.delete('/episodes/:id',(request, response) => {
   const { id } = request.params;
-  const projectIndex = projects.findIndex(project => project.id === id);
+  const projectIndex = episodes.findIndex(project => project.id === id);
   if(projectIndex <0){
     return response.status(400).json({error: 'Project not found'})
   }
-  projects.splice(projectIndex,1);
+  episodes.splice(projectIndex,1);
   return response.status(204).send();
 });
 
