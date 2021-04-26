@@ -18,5 +18,4 @@ app.use(routes);
 //Query Params (req.query): pagiancao, filtros , ordenacao
 
  
-//localhost:3333
-app.listen(3333);
+app.listen(process.env.PORT || 3000);
