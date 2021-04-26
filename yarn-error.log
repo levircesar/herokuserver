@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/local/bin/yarn start
+  /usr/bin/node /usr/local/bin/yarn add corsgit
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/levir/android-studio/bin:/home/levir/Android/Sdk/emulator:/home/levir/Android/Sdk/tools:/home/levir/Android/Sdk/tools/bin:/home/levir/Android/Sdk/platform-tools:/home/levir/android-studio/bin:/home/levir/Android/Sdk/emulator:/home/levir/Android/Sdk/tools:/home/levir/Android/Sdk/tools/bin:/home/levir/Android/Sdk/platform-tools
@@ -14,12 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  SyntaxError: /home/levir/Documentos/heroku/package.json: Unexpected token } in JSON at position 337
-      at JSON.parse (<anonymous>)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/corsgit: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -30,7 +35,7 @@ npm manifest:
     "scripts": {
       "start": " tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
       "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
-      "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback",
+      "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
     },
     "devDependencies": {
       "@types/cors": "^2.8.10",
@@ -46,6 +51,9 @@ npm manifest:
       "knex": "^0.95.4",
       "sqlite": "^4.0.19",
       "sqlite3": "^5.0.2"
+    },
+    "engines": {
+      "node": "14.16.1"
     }
   }
 
