@@ -18,4 +18,4 @@ app.use(routes_1.default);
 //Route params (req.params): Identificar qual eu quero atualizar ou deletar ex: /users:id
 //Query Params (req.query): pagiancao, filtros , ordenacao
 //localhost:3333
-app.listen(process.env.PORT || 3333);
+app.listen(process.env.PORT || 3000);
